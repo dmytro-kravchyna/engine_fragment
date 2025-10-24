@@ -34,8 +34,10 @@
     "copy-worker": "node ../../resources/worker-solver.js",
     "fb": "yarn delete-schema && yarn create-schema",
     "create-schema": "cd ./flatbuffers && flatc.exe --gen-mutable -o ../src/Schema --ts index.fbs",
+    "create-schema-all": "node ./flatbuffers/generate-schema.mjs",
     "delete-schema": "node ./flatbuffers/delete-schema.mjs",
-    "test-node": "yarn tsx ./src/Importers/IfcImporter/node-example.ts"
+    "test-node": "yarn tsx ./src/Importers/IfcImporter/node-example.ts",
+    "transpile-cpp": "node ./utils/transpile-cpp.cjs ./src/FragmentsModels/src ./cpp/FragmentsModels/ && node ./utils/transpile-cpp.cjs ./src/Importers/src ./cpp/Importers/ && node ./utils/transpile-cpp.cjs ./src/Importers/IfcImporter/src ./cpp/Importers/IfcImporter/ && node ./utils/transpile-cpp.cjs ./src/Utils ./cpp/Utils/"
   },
   "dependencies": {
     "earcut": "^3.0.1",
