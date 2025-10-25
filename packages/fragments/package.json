@@ -37,7 +37,7 @@
     "create-schema-all": "node ./flatbuffers/generate-schema.mjs",
     "delete-schema": "node ./flatbuffers/delete-schema.mjs",
     "test-node": "yarn tsx ./src/Importers/IfcImporter/node-example.ts",
-    "transpile-cpp": "node ./utils/transpile-cpp.cjs ./src/FragmentsModels/src ./cpp/FragmentsModels/ && node ./utils/transpile-cpp.cjs ./src/Importers/src ./cpp/Importers/ && node ./utils/transpile-cpp.cjs ./src/Importers/IfcImporter/src ./cpp/Importers/IfcImporter/ && node ./utils/transpile-cpp.cjs ./src/Utils ./cpp/Utils/"
+    "transpile-cpp": "node ./utils/transpile-cpp.cjs ./src/FragmentsModels/src ./ffi/FragmentsModels/ && node ./utils/transpile-cpp.cjs ./src/Importers/src ./ffi/Importers/ && node ./utils/transpile-cpp.cjs ./src/Importers/IfcImporter/src ./ffi/Importers/IfcImporter/ && node ./utils/transpile-cpp.cjs ./src/Utils ./ffi/Utils/"
   },
   "dependencies": {
     "earcut": "^3.0.1",

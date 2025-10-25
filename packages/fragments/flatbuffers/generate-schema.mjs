@@ -40,7 +40,7 @@ async function main() {
   // Normalize intended paths: when running from packages/fragments, desired targets are
   // packages/fragments/ffi/Schema, packages/fragments/cpp/Schema, packages/fragments/src/Schema
   // const fixedFfi = path.resolve(root, "ffi/Schema");
-  const fixedCpp = path.resolve(root, "cpp/Schema");
+  const fixedCpp = path.resolve(root, "ffi/Schema");
   const fixedTs = path.resolve(root, "src/Schema");
   // fs.mkdirSync(fixedFfi, { recursive: true });
   fs.mkdirSync(fixedCpp, { recursive: true });
@@ -135,17 +135,18 @@ async function main() {
         cppStd = "--cpp-std=c++17";
       }
 
-      // generate C++ bindings with detected C++ standard
-      //  --gen-onefile \
-      run(`${flatc} --cpp \
-  ${cppStd} \
-  --gen-mutable \
-  --gen-object-api \
-  --gen-compare \
-  --gen-name-strings \
-  --cpp-include <memory> \
-  --cpp-include <string> \
-  -o ${fixedCpp} ${fbsFile}`);
+        // generate C++ bindings with detected C++ standard
+        // --gen-onefile \
+        // --cpp-include '<memory>' \
+        // --cpp-include '<string>' \
+        // Quote the include arguments so the shell does not treat '<' and '>' as redirection
+        run(`${flatc} --cpp \
+      ${cppStd} \
+      --gen-mutable \
+      --gen-object-api \
+      --gen-compare \
+      --gen-name-strings \
+      -o ${fixedCpp} ${fbsFile}`);
       // generate TypeScript bindings (mutable)
       run(`${flatc} --gen-mutable -o ${fixedTs} --ts ${fbsFile}`);
     } else {
